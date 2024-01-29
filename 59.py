@@ -17,7 +17,6 @@ class Solution:
 
         lamp = 1
         while len(matrix) != 0:
-            print(matrix)
             if lamp == 1:
                 self.up(res, matrix, com)
                 lamp += 1
@@ -46,7 +45,6 @@ class Solution:
                 for k in range(leng):
                     if res[j][k] == matrix[0][i]:
                         com[j][k] = self.sch
-                        print(self.sch)
                         self.sch += 1
                         lamp = True
                         break
