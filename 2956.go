@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+func main() {
+	num1 := []int{4, 3, 2, 3, 1}
+	num2 := []int{2, 2, 5, 2, 3, 6}
+	fmt.Println(findIntersectionValues(num1, num2))
+}
+
 func findIntersectionValues(nums1 []int, nums2 []int) []int {
 	var res []int
 	sch := 0
@@ -27,10 +33,4 @@ func findIntersectionValues(nums1 []int, nums2 []int) []int {
 	res = append(res, sch)
 
 	return res
-}
-
-func main() {
-	num1 := []int{4, 3, 2, 3, 1}
-	num2 := []int{2, 2, 5, 2, 3, 6}
-	fmt.Println(findIntersectionValues(num1, num2))
 }
