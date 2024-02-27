@@ -1,0 +1,38 @@
+                    Things in Vacancy
+
+ 1. PostgreSQL                  11111111111111111
+ 2. Docker                      11111111111111
+ 3. Git/GitHub                  1111111111111
+ 4. Kubernetes                  111111111111
+ 5. Redis                       11111111111
+ 6. RabbitMQ                    1111111111
+ 7. Kafka                       1111111
+ 8. REST                        1111111
+ 9. Linux                       111111
+10. HTTP                        111111
+11. NoSQL                       11111
+12. gRPC                        11111
+13. Scrum                       1111
+14. Kanban                      1111
+15. MySQL                       1111
+16. jira                        111
+17. Confluence                  111
+18. DevOps/TechOps              111
+19. JSON                        111
+20. Jaeger                      111
+21. SSL                         111
+22. CORS                        11
+23. Rest API                    11
+24. K8s                         11
+25. JWT                         11
+26. Restful API                 11
+27. websockets                  11
+28. AWS                         11
+29. Cosmos SDK/Tendermint       1
+30. NATS jetStream              1
+31. TCP                         1
+33. NATS                        1
+34. SOAP                        1
+35. Node.js                     1
+36. GRPC                        1
+37. API                         1
