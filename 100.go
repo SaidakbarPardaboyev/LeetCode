@@ -9,7 +9,7 @@
 func isSameTree(p *TreeNode, q *TreeNode) bool {
 	if p == nil && q == nil {
 		return true
-	} else if (p == nil && q != nil) || (p != nil && q == nil) {
+	} else if p == nil || q == nil {
 		return false
 	}
 	queue1 := []*TreeNode{p}
