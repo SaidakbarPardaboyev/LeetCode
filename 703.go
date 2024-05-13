@@ -19,7 +19,7 @@ func Constructor(k int, nums []int) KthLargest {
 	return h
 }
 
-func (h *KthLargest) Delete(ind int) {
+func (h *KthLargest) ReOrder(ind int) {
 	for ind*2 < len(h.Heap) {
 		if ind*2+1 < len(h.Heap) &&
 			h.Heap[ind*2] > h.Heap[ind*2+1] &&
@@ -62,7 +62,7 @@ func (h *KthLargest) Pop() int {
 
 	h.Heap[1] = h.Heap[len(h.Heap)-1]
 	h.Heap = h.Heap[:len(h.Heap)-1]
-	h.Delete(1)
+	h.ReOrder(1)
 	return res
 }
 
@@ -72,7 +72,7 @@ func (this *KthLargest) Add(val int) int {
 	} else {
 		if val > this.Heap[1] {
 			this.Heap[1] = val
-			this.Delete(1)
+			this.ReOrder(1)
 		}
 	}
 
