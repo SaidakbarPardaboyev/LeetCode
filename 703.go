@@ -1,33 +1,19 @@
 type KthLargest struct {
 	Heap []int
 	K    int
-	MaxK int
 }
 
 func Constructor(k int, nums []int) KthLargest {
 	h := KthLargest{K: k}
 
-	if len(nums) > 0 {
-		nums = append(nums, nums[0])
-		h.Heap = nums
-	} else {
-		h.Heap = []int{0}
-	}
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] > nums[j]
+	})
 
-	for i := len(h.Heap) / 2; i > 0; i-- {
-		h.Delete(i)
-	}
+	h.Push(0)
 
-	if len(nums) == 1 {
-		res := -1
-		copyOfHeap := append([]int{}, h.Heap...)
-		for i := 0; i < h.K || i < len(h.Heap)-1; i++ {
-			res = h.Pop()
-		}
-		h.MaxK = res
-		h.Heap = append([]int{}, copyOfHeap...)
-	} else {
-		h.MaxK = math.MinInt64
+	for i := 0; i < k && i < len(nums); i++ {
+		h.Push(nums[i])
 	}
 
 	return h
@@ -36,11 +22,11 @@ func Constructor(k int, nums []int) KthLargest {
 func (h *KthLargest) Delete(ind int) {
 	for ind*2 < len(h.Heap) {
 		if ind*2+1 < len(h.Heap) &&
-			h.Heap[ind*2] < h.Heap[ind*2+1] &&
-			h.Heap[ind*2+1] > h.Heap[ind] {
+			h.Heap[ind*2] > h.Heap[ind*2+1] &&
+			h.Heap[ind*2+1] < h.Heap[ind] {
 			h.Heap[ind], h.Heap[ind*2+1] = h.Heap[ind*2+1], h.Heap[ind]
 			ind = ind*2 + 1
-		} else if h.Heap[ind] < h.Heap[ind*2] {
+		} else if h.Heap[ind] > h.Heap[ind*2] {
 			h.Heap[ind], h.Heap[ind*2] = h.Heap[ind*2], h.Heap[ind]
 			ind *= 2
 		} else {
@@ -58,7 +44,7 @@ func (h *KthLargest) Push(val int) {
 	h.Heap = append(h.Heap, val)
 	ind := len(h.Heap) - 1
 	for ind/2 >= 1 {
-		if h.Heap[ind] > h.Heap[ind/2] {
+		if h.Heap[ind] < h.Heap[ind/2] {
 			h.Heap[ind], h.Heap[ind/2] = h.Heap[ind/2], h.Heap[ind]
 			ind /= 2
 		} else {
@@ -81,20 +67,17 @@ func (h *KthLargest) Pop() int {
 }
 
 func (this *KthLargest) Add(val int) int {
-	this.Push(val)
-	copyOfHeap := append([]int{}, this.Heap...)
-
-	res := -1
-	if val > this.MaxK {
-		for i := 0; i < this.K; i++ {
-			res = this.Pop()
-		}
-		this.Heap = append([]int{}, copyOfHeap...)
-		this.MaxK = res
+	if len(this.Heap) < this.K+1 {
+		this.Push(val)
 	} else {
-		return this.MaxK
+		if val > this.Heap[1] {
+			this.Heap[1] = val
+			this.Delete(1)
+		}
 	}
-	return res
+
+	return this.Heap[1]
+
 }
 
 /**
